@@ -1,7 +1,9 @@
  #MoneyWise 
  #pythonproject 
  #pythonflask
-
+ #HTML
+ #CSS
+ 
 Finance Calculator - MoneyWise
 Overview
 Welcome to  MoneyWise,, your personal finance calculator designed to help you track and manage your finances effectively. This tool allows you to input various financial categories such as income, loans, education, travel, rent, and food expenses, and provides insights into your spending patterns.
