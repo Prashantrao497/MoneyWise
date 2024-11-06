@@ -6,7 +6,7 @@
  
 Finance Calculator - MoneyWise
 Overview
-Welcome to  MoneyWise,, your personal finance calculator designed to help you track and manage your finances effectively. This tool allows you to input various financial categories such as income, loans, education, travel, rent, and food expenses, and provides insights into your spending patterns.
+Welcome to  MoneyWise,your personal finance calculator designed to help you track and manage your finances effectively. This tool allows you to input various financial categories such as income, loans, education, travel, rent, and food expenses, and provides insights into your spending patterns.
 
 Features
 User-Friendly Interface: Easy to navigate with a clean and intuitive design.
