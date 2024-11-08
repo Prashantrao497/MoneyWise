@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2 class="mb-4">Add Expense</h2>
+    <form action="{{ url_for('add_expense') }}" method="POST" class="mb-4">
+        <div class="form-group">
+            <label for="category-select">Category:</label>
+            <select id="category-select" name="category" class="form-control">
+                <option value="Food & Beverage">Food & Beverage</option>
+                <option value="Rent">Rent</option>
+                <option value="Transport">Transport</option>
+                <option value="Relaxing">JOLLY</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="amount-input">Amount:</label>
+            <input type="number" id="amount-input" name="amount" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="date-input">Date:</label>
+            <input type="date" id="date-input" name="date" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+</body>
+</html>

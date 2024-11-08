@@ -1,0 +1,118 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <h2 class="mb-4">Add Expense</h2>
+        <form action="{{ url_for('add_expense') }}" method="POST" class="mb-4">
+            <div class="form-group">
+                <label for="category-select">Category:</label>
+                <select id="category-select" name="category" class="form-control">
+                    <option value="Food & Beverage">Food & Beverage</option>
+                    <option value="Rent">Rent</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Relaxing">JOLLY</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="amount-input">Amount:</label>
+                <input type="number" id="amount-input" name="amount" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="date-input">Date:</label>
+                <input type="date" id="date-input" name="date" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add</button>
+        </form>
+    </div>
+
+    <div class="col-md-6">
+        <h2 class="mb-4">Income Allocation</h2>
+        <form action="{{ url_for('allocate_income') }}" method="POST" class="mb-4">
+            <div class="form-group">
+                <label for="income-input">Income:</label>
+                <input type="number" id="income-input" name="income" class="form-control" placeholder="Enter your income" required>
+            </div>
+            <div class="form-group">
+                <label for="allocation-food_beverage">Food & Beverage:</label>
+                <input type="number" id="allocation-food_beverage" name="allocation_Food_&_Beverage" class="form-control" placeholder="0" />
+            </div>
+            <div class="form-group">
+                <label for="allocation-rent">Rent:</label>
+                <input type="number" id="allocation-rent" name="allocation_Rent" class="form-control" placeholder="0" />
+            </div>
+            <div class="form-group">
+                <label for="allocation-transport">Transport:</label>
+                <input type="number" id="allocation-transport" name="allocation_Transport" class="form-control" placeholder="0" />
+            </div>
+            <div class="form-group">
+                <label for="allocation-relaxing">JOLLY:</label>
+                <input type="number" id="allocation-relaxing" name="allocation_Relaxing" class="form-control" placeholder="0" />
+            </div>
+            <button type="submit" class="btn btn-success">Allocate</button>
+        </form>
+
+        <form action="{{ url_for('clear_expenses') }}" method="post" class="mb-2">
+            <button type="submit" class="btn btn-danger">Clear All Expenses</button>
+        </form>
+        <form action="{{ url_for('clear_allocations') }}" method="post">
+            <button type="submit" class="btn btn-danger">Clear All Allocations</button>
+        </form>
+    </div>
+</div>
+
+<div class="my-4">
+    <h2>Expenses List</h2>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Amount</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for expense in expenses %}
+            <tr>
+                <td>{{ expense.category }}</td>
+                <td>{{ expense.amount }}</td>
+                <td>{{ expense.date }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>Total:</td>
+                <td>{{ total_amount }}</td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+<div>
+    <h2>Income Allocations</h2>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Allocated Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for allocation in allocations %}
+            <tr>
+                <td>{{ allocation.category }}</td>
+                <td>{{ allocation.amount }}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td>Total Allocated:</td>
+                <td>{{ total_allocated }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<a href="{{ url_for('compare') }}" class="btn btn-info mt-4">Compare Expenses and Allocations</a>
+{% endblock %}

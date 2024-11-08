@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Comparison</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="mb-4">Monthly Expense Comparison</h1>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Month</th>
+                    <th>Spent</th>
+                    <th>Allocated</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for category, data in comparison.items() %}
+                    {% for month, spent in data.spent.items() %}
+                        <tr class="{% if (category, month) in warnings %}table-warning{% endif %}">
+                            <td>{{ category }}</td>
+                            <td>{{ month }}</td>
+                            <td>{{ spent }}</td>
+                            <td>{{ data.allocated }}</td>
+                        </tr>
+                    {% endfor %}
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="alert alert-warning" role="alert">
+            <h4 class="alert-heading">Warnings</h4>
+            <ul>
+                {% for category, month in warnings %}
+                <li><strong>{{ category }}</strong> in {{ month }} exceeded previous month's spending.</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <a href="{{ url_for('index') }}" class="btn btn-primary mt-4">Back to Main Page</a>
+    </div>
+</body>
+</html>
